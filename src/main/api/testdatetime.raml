@@ -1,0 +1,28 @@
+#%RAML 1.0
+version: v1
+title: testDateTime
+mediaType: application/json
+protocols: [HTTP, HTTPS]
+
+schemas:
+  dTime: !include datetimeeSchema.json
+  
+/testDateTime:
+  get:
+    description: POST
+
+    queryParameters:
+        changedDateTime?:
+          type: datetime
+          example: 2016-02-28T16:41:41.090789Z
+    responses: 
+      201:
+        body:
+          application/json:
+            type: dTime
+            example: !include datetimeeExample.json
+      500:
+        body:
+          application/json:
+            example: |
+              { "message" : "Internal Server Error "}
